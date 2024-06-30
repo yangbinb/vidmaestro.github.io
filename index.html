@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Video Generation, Diffusion Model, Spatial-temporal Modeling">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VidMaestro: Towards Photo-realistic and High-dynamic Video Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">VidMaestro: Towards Photo-realistic and High-dynamic Video Generations</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a>Binbin Yang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a>Kangyang Xie</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a>Xinyu Xiao</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a>Meng Wang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a>Yang Liu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a>Jingdong Chen</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a>Ming Yang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a>Liang Lin</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Sun Yat-sen University,</span>
+            <span class="author-block"><sup>2</sup>Zhejiang University</span>
+            <span class="author-block"><sup>3</sup>Antgroup</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.pdf"/>
+      <h2 class="subtitle has-text-centered">
+        <span class="teaser">VidMaestro</span> utilizes a reference image (the leftmost frame), and
+        uses a pair of appearance and motion descriptions as prompts to generate a video.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-tmm">
+          <img src="./static/videos/fig1_TMM_letters_with_fire_burning_effect.mp4">
+        </div>
+
+        <div class="item item-dragon">
+          <img src="./static/videos/fig1_The dragon_is_spreading_its_wings_and_roaring.mp4">
+        </div>
+
+        <div class="item item-welder">
+          <img src="./static/videos/fig1_The_electric_welder_is_welding.mp4">
+        </div>
+
+        <div class="item item-airplane">
+          <img src="./static/videos/fig1_The_airplane_is_landing.mp4">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h1 class="title is-2">Abstract</h1>
+        <div class="content has-text-justified">
+
+          <p>
+            Recent advances in diffusion models have greatly propelled the progress of text-to-image (T2I) generation.
+            However, generating both high-fidelity and high-dynamic videos poses greater challenges due to the high-dimensional latent space, the intricate spatial-temporal relationships, and the strong reliance on high-quality training data.
+            Prior works have sought to extend a T2I diffusion model to a text/image-to-video model by incorporating temporal convolution/self-attention modules.
+            While the integration of temporal operations can enhance temporal coherence, they often suffer from limited object animation and unsatisfactory motion patterns.
+            An underlying cause is the individual frame-wise semantic alignment with the input text prompt, which fails to comprehensively capture the intricate spatial-temporal dynamics.
+          </p>
+          <p>
+            In this work, we present <span class="teaser">VidMaestro</span>, a video diffusion model to generate high-definition videos with controllable motion by separately guiding the appearance and motion information.
+            Specifically, our method takes as inputs an appearance prompt, which includes a reference image and a textual description, as well as a motion prompt that details the movement and actions within the video.
+            Unlike previous works that solely use spatial 2D cross-attention to individually align each frame with the appearance prompt, our VidMaestro introduces a motion-aware 3D cross-attention module to comprehensively capture video dynamics in the spatial-temporal space and thereby improve the semantic alignment with the input motion cues.
+            By explicitly guiding the spatial and temporal content with these two cues, our VidMaestro exhibits the capability to generate controllable and high-dynamic motions rather than minimal animations.
+            Extensive experiments have been conducted to demonstrate the superior spatial-temporal generative performance of our method, especially with temporal consistency and controllable motion.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- Cross-attention Image. -->
+        <h1 class="title is-3"> Spatial 2D cross-attention v.s. Motion-aware 3D cross-attention</h1>
+        <div class="content has-text-justified">
+          <p>
+            Spatial 2D cross-attention fails to correctly associate the "roaring" token with appropriate region.
+            By contrast, our motion-aware 3D cross-attention successfully localizes the mouth of the mechanical white tiger and captures its moving trajectory.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/cross-attention.pdf"
+        </div>
+        <!--/ Cross-attention Image. -->
+      </div>
+    </div>
+  </div>
+</section>
+    
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-4">2D Cross-attention</h3>
+          <img src="./static/videos/attn_visualization/attn_2d.mp4">
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <h3 class="title is-4">3D Cross-attention</h3>
+              <img src="./static/videos/attn_visualization/attn_3d.mp4">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- Cross-attention Image. -->
+        <h1 class="title is-3"> Model Architecture</h1>
+        <!-- <div class="content has-text-justified">
+          <p>
+            Spatial 2D cross-attention fails to correctly associate the "roaring" token with appropriate region.
+            By contrast, our motion-aware 3D cross-attention successfully localizes the mouth of the mechanical white tiger and captures its moving trajectory.
+          </p>
+        </div> -->
+        <div class="content has-text-centered">
+          <img src="./static/images/pipeline.pdf"
+        </div>
+        <!--/ Cross-attention Image. -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <h1 class="title is-3">Gallery</h1>
+      </div>
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <div class="swan swing">
+          <img src="./static/videos/more/The_swan_is_spreading_its_swings.mp4">
+        </div>
+
+        <div class="scene">
+          <img src="./static/videos/more/The_beautiful_scence_time_lapse.mp4">
+        </div>
+
+        <div class="mechanical dragon">
+          <img src="./static/videos/more/Mechanical_dragon.mp4">
+        </div>
+
+        <div class="swan head">
+          <img src="./static/videos/more/The_swan_is_turning_its_head.mp4">
+        </div>
+
+        <div class="cottage">
+          <img src="./static/videos/more/A_cottage_by_a_bonfire_on_a_snownight.mp4">
+        </div>
+
+        <div class="volcano">
+          <img src="./static/videos/more/A_volcano_is_eruptiing_violently_acompanied_by_a_lot_of_smoke.mp4">
+        </div>
+
+
+        <div class="sofa">
+          <img src="./static/videos/more/A_sofa_burning_in_the_darkness.mp4">
+        </div>
+
+        <div class="black dragon">
+          <img src="./static/videos/more/A_black_dragon_is_flapping_its_wings.mp4">
+        </div>
+
+        <div class="wolf">
+          <img src="./static/videos/more/The_wolf_is_looking.mp4">
+        </div>
+
+        <div class="seagull">
+          <img src="./static/videos/more/The_seagull_is_gaping_its_beak.mp4">
+        </div>
+
+        <div class="airship">
+          <img src="./static/videos/more/An_airship_is_flying_in_the_sky.mp4">
+        </div>
+      
+        <div class="fist">
+          <img src="./static/videos/more/Fists_pound.mp4">
+        </div>
+      
+        <div class="ice dragon">
+          <img src="./static/videos/more/The_ice-dragon-1.mp4">
+        </div>
+
+        <div class="ironman">
+          <img src="./static/videos/more/iron_man.mp4">
+        </div>
+
+        <div class="horse">
+          <img src="./static/videos/more/The_horse_is_swishing_its_tail_while_standing_stil.mp4">
+        </div>
+        
+        <div class="tower">
+          <img src="./static/videos/more/The_Eiffel_Tower_in_the_Sea_of_Fire.mp4">
+        </div>
+
+        <div class="hands">
+          <img src="./static/videos/more/shake_hands_with_ice_and_fire.mp4">
+        </div>
+
+        <div class="dog">
+          <img src="./static/videos/more/A_dog_is_running.mp4">
+        </div>
+
+        <div class="forest">
+          <img src="./static/videos/more/Mountain_forest_waterfall_canyon_cartoon_style.mp4">
+        </div>
+
+        <div class="dragon">
+          <img src="./static/videos/more/The_dragon_flaps_its_wings.mp4">
+        </div>
+
+        <div class="rabbit">
+          <img src="./static/videos/more/The_rabbit_is_eating.mp4">
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template credit to <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
