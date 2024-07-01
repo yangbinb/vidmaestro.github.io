@@ -90,7 +90,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="./static/images/teaser.pdf"/>
+      <img src="./static/images/teaser.png"/>
       <h2 class="subtitle has-text-centered">
         <span class="teaser">VidMaestro</span> utilizes a reference image (the leftmost frame), and
         uses a pair of appearance and motion descriptions as prompts to generate a video.
@@ -134,30 +134,6 @@
     </div>
   </div>
 </section>
-
-<!-- <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-tmm">
-          <img src="./static/videos/fig1_TMM_letters_with_fire_burning_effect.mp4">
-        </div>
-
-        <div class="item item-dragon">
-          <img src="./static/videos/fig1_The dragon_is_spreading_its_wings_and_roaring.mp4">
-        </div>
-
-        <div class="item item-welder">
-          <img src="./static/videos/fig1_The_electric_welder_is_welding.mp4">
-        </div>
-
-        <div class="item item-airplane">
-          <img src="./static/videos/fig1_The_airplane_is_landing.mp4">
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
 
 <section class="section">
@@ -207,7 +183,7 @@
           </p>
         </div>
         <div class="content has-text-centered">
-          <img src="./static/images/cross-attention.pdf"
+          <img src="./static/images/cross-attention.png"
         </div>
         <!--/ Cross-attention Image. -->
       </div>
@@ -222,7 +198,10 @@
       <div class="column">
         <div class="content">
           <h3 class="title is-4">2D Cross-attention</h3>
-          <img src="./static/videos/attn_visualization/attn_2d.mp4">
+            <video poster="" id="2d_attn" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/attn_visualization/attn_2d.mp4"
+                      type="video/mp4">
+            </video>
         </div>
       </div>
 
@@ -230,7 +209,10 @@
         <div class="columns is-centered">
           <div class="column content">
             <h3 class="title is-4">3D Cross-attention</h3>
-              <img src="./static/videos/attn_visualization/attn_3d.mp4">
+              <video poster="" id="3d_attn" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/attn_visualization/attn_3d.mp4"
+                        type="video/mp4">
+              </video>
           </div>
 
         </div>
@@ -271,88 +253,150 @@
       <div id="results-carousel" class="carousel results-carousel">
 
         <div class="swan swing">
-          <img src="./static/videos/more/The_swan_is_spreading_its_swings.mp4">
+          <video poster="" id="swan_swing" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_swan_is_spreading_its_swings.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="scene">
-          <img src="./static/videos/more/The_beautiful_scence_time_lapse.mp4">
+          <video poster="" id="scene" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_beautiful_scence_time_lapse.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="mechanical dragon">
-          <img src="./static/videos/more/Mechanical_dragon.mp4">
+          <video poster="" id="mechanical_dragon" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/Mechanical_dragon.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="swan head">
-          <img src="./static/videos/more/The_swan_is_turning_its_head.mp4">
+          <video poster="" id="swan_head" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_swan_is_turning_its_head.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="cottage">
-          <img src="./static/videos/more/A_cottage_by_a_bonfire_on_a_snownight.mp4">
+          <video poster="" id="cottage" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/A_cottage_by_a_bonfire_on_a_snownight.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="volcano">
-          <img src="./static/videos/more/A_volcano_is_eruptiing_violently_acompanied_by_a_lot_of_smoke.mp4">
+          <video poster="" id="volcano" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/A_volcano_is_eruptiing_violently_acompanied_by_a_lot_of_smoke.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
-
         <div class="sofa">
-          <img src="./static/videos/more/A_sofa_burning_in_the_darkness.mp4">
+          <video poster="" id="sofa" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/A_sofa_burning_in_the_darkness.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="black dragon">
-          <img src="./static/videos/more/A_black_dragon_is_flapping_its_wings.mp4">
+          <video poster="" id="black_dragon" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/A_black_dragon_is_flapping_its_wings.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="wolf">
-          <img src="./static/videos/more/The_wolf_is_looking.mp4">
+          <video poster="" id="wolf" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_wolf_is_looking.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="seagull">
-          <img src="./static/videos/more/The_seagull_is_gaping_its_beak.mp4">
+          <video poster="" id="seagull" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_seagull_is_gaping_its_beak.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="airship">
-          <img src="./static/videos/more/An_airship_is_flying_in_the_sky.mp4">
+          <video poster="" id="airship" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/An_airship_is_flying_in_the_sky.mp4"
+                    type="video/mp4">
+          </video>
         </div>
       
         <div class="fist">
-          <img src="./static/videos/more/Fists_pound.mp4">
+          <video poster="" id="fist" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/Fists_pound.mp4"
+                    type="video/mp4">
+          </video>
         </div>
       
         <div class="ice dragon">
-          <img src="./static/videos/more/The_ice-dragon-1.mp4">
+          <video poster="" id="ice_dragon" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_ice-dragon-1.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="ironman">
-          <img src="./static/videos/more/iron_man.mp4">
+          <video poster="" id="ironman" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/iron_man.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="horse">
-          <img src="./static/videos/more/The_horse_is_swishing_its_tail_while_standing_stil.mp4">
+          <video poster="" id="horse" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_horse_is_swishing_its_tail_while_standing_stil.mp4"
+                    type="video/mp4">
+          </video>
         </div>
         
         <div class="tower">
-          <img src="./static/videos/more/The_Eiffel_Tower_in_the_Sea_of_Fire.mp4">
+          <video poster="" id="tower" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_Eiffel_Tower_in_the_Sea_of_Fire.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="hands">
-          <img src="./static/videos/more/shake_hands_with_ice_and_fire.mp4">
+          <video poster="" id="hands" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/shake_hands_with_ice_and_fire.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="dog">
-          <img src="./static/videos/more/A_dog_is_running.mp4">
+          <video poster="" id="dog" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/A_dog_is_running.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="forest">
-          <img src="./static/videos/more/Mountain_forest_waterfall_canyon_cartoon_style.mp4">
+          <video poster="" id="forest" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/Mountain_forest_waterfall_canyon_cartoon_style.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="dragon">
-          <img src="./static/videos/more/The_dragon_flaps_its_wings.mp4">
+          <video poster="" id="dragon" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_dragon_flaps_its_wings.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
         <div class="rabbit">
-          <img src="./static/videos/more/The_rabbit_is_eating.mp4">
+          <video poster="" id="rabbit" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/more/The_rabbit_is_eating.mp4"
+                    type="video/mp4">
+          </video>
         </div>
 
 
